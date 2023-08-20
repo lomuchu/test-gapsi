@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-4">
+            <button  class="btn btn-primary" (click)="open(mymodal)" >agregar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Razon Social</th>
+                    <th scope="col">Direccion</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of proveedores" >
+                    <th>{{item.nombre}}</th>
+                    <td>{{item.razon_social}}</td>
+                    <td>{{item.direccion}}</td>
+                    <td><button class="btn btn-danger" (click)="eliminar(item.id)">eliminar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item" *ngFor="let i of total"><a class="page-link" href="#"  >{{i + 1}}</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #mymodal let-modal>  
+    <div class="modal-header">  
+      <h4 class="modal-title" id="modal-basic-title">Agregar Proveedor</h4>  
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">  
+        <span aria-hidden="true">x</span>  
+      </button>  
+    </div>  
+    <div class="modal-body">  
+      <form [formGroup]="formularioForm">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Nombre:</label>
+                <input type="text" formControlName="nombre">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Razon Social:</label>
+        <input type="text" formControlName="razon_social">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>direccion:</label>
+        <input type="text" formControlName="direccion">
+            </div>
+        </div>
+      </form>
+    </div>  
+    <div class="modal-footer">  
+      <button type="button" class="btn btn-danger" (click)="modal.close()">cerrar</button>  
+      <button type="button" class="btn btn-primary" (click)="addProveedor()">agregar</button>  
+    </div>  
+  </ng-template>  
